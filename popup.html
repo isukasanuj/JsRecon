@@ -1,0 +1,44 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<script src="theme.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+ :root{--ink:#0A0E16;--panel:#111726;--panel-2:#0E131F;--line:#1E2736;--signal:#3DD9EB;--wan:#FF6B9D;--text:#E7EDF6;--muted:#7C8AA0;--dim:#46536A;
+   --display:'Space Grotesk',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;--grad:rgba(61,217,235,.07);}
+ :root[data-theme="light"]{--ink:#F4F6FB;--panel:#FFFFFF;--panel-2:#EEF2F8;--line:#D7DEEA;--signal:#0E9BB5;--wan:#D6286F;--text:#0E1726;--muted:#56657C;--dim:#93A0B4;--grad:rgba(14,155,181,.06);}
+ *{box-sizing:border-box;font-family:var(--mono)}
+ body{width:300px;margin:0;background:radial-gradient(600px 300px at 100% 0%,var(--grad),transparent 60%),var(--ink);color:var(--text)}
+ header{display:flex;align-items:center;gap:8px;padding:13px 14px;border-bottom:1px solid var(--line)}
+ header img{width:22px;height:22px} header h1{font-family:var(--display);font-size:14px;margin:0;font-weight:700}
+ .eyebrow{font-size:9px;letter-spacing:.28em;color:var(--muted);margin-left:auto}
+ .body{padding:14px}
+ .row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+ .lbl{font-family:var(--display);font-size:13px;font-weight:600} .status{font-size:11px}.on{color:var(--signal)}.off{color:var(--muted)}
+ .switch{position:relative;width:46px;height:24px} .switch input{display:none}
+ .slider{position:absolute;inset:0;background:var(--line);border-radius:24px;cursor:pointer;transition:.2s}
+ .slider:before{content:"";position:absolute;height:18px;width:18px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}
+ input:checked+.slider{background:var(--signal)} input:checked+.slider:before{transform:translateX(22px)}
+ input.scope{width:100%;padding:8px 10px;background:var(--ink);border:1px solid var(--line);border-radius:8px;color:var(--text);font-size:12px;margin-bottom:10px;font-family:var(--mono)}
+ input.scope:focus{outline:none;border-color:var(--signal)}
+ .stats{display:flex;gap:8px;margin:10px 0}
+ .stats div{flex:1;background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:10px;padding:9px;text-align:center}
+ .stats .n{font-family:var(--display);font-size:18px;font-weight:700;color:var(--signal)} .stats .wan{color:var(--wan)} .stats .l{font-size:9px;letter-spacing:.16em;color:var(--dim);margin-top:2px}
+ .btns{display:flex;gap:8px;margin-top:6px}
+ button{flex:1;padding:9px;border:1px solid var(--line);border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--mono);background:none;color:var(--muted);transition:.2s}
+ button:hover{border-color:var(--signal);color:var(--signal)}
+ button.primary{background:var(--signal);color:var(--ink);border-color:var(--signal)}
+ button.danger:hover{border-color:var(--wan);color:var(--wan)}
+</style></head><body>
+ <header><img src="icons/icon48.png"><h1>JS Recon</h1><span class="eyebrow">API MAPPER</span></header>
+ <div class="body">
+   <div class="row"><div><div class="lbl">Collecting</div><div class="status off" id="status">Off</div></div>
+     <label class="switch"><input type="checkbox" id="toggle"><span class="slider"></span></label></div>
+   <input class="scope" id="scope" placeholder="scope hosts, comma-sep (blank = all)">
+   <div class="stats">
+     <div><div class="n" id="hosts">0</div><div class="l">HOSTS</div></div>
+     <div><div class="n" id="endpoints">0</div><div class="l">ENDPOINTS</div></div>
+     <div><div class="n wan" id="secrets">0</div><div class="l">SECRETS</div></div>
+   </div>
+   <button class="primary" id="open" style="width:100%">Open API map</button>
+   <div class="btns"><button id="theme">◐ Theme</button><button class="danger" id="clear">Clear</button></div>
+ </div>
+ <script src="popup.js"></script></body></html>
